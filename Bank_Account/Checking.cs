@@ -34,14 +34,17 @@ namespace Bank_Account
             this.WithdrawAmt = withdrawAmt; 
 
         }
-        
+
         // methods
 
+        // inheriting from the virtual method in Account class 
         public override void Balance()
         {
-           Console.WriteLine("Your Checking Account Balance is: " + checkAccountBalance + " dollars"); 
+            base.Balance(); Console.WriteLine("$" + checkAccountBalance); 
         }
 
+        //Does math for adding the user imput amount to the hard coded checking account balance
+        //checking account balance is 500
         public override double Deposit()
         {
             checkAccountBalance = DepositFunds + checkAccountBalance;

@@ -31,6 +31,13 @@ namespace Bank_Account
         {
             get { return this.lastName; }
         }
+
+        //inherited from Account parent class 
+        public int AccountNumber
+        {
+            get;
+        }
+       
          
         // default contructor 
 
@@ -41,18 +48,19 @@ namespace Bank_Account
 
         // Constructors MUST HAVE 1
 
-        public Client(string firstName, string middleInitial, string lastName)
+        public Client(string firstName, string middleInitial, string lastName, int accountNumber)
         {
             this.firstName = firstName;
             this.middleInitial = middleInitial;
             this.lastName = lastName;
+            this.AccountNumber = accountNumber; 
         }
 
         // method MUST HAVE 1
 
         public void ClientInfo()
         {
-            Console.WriteLine(firstName + middleInitial + lastName);
+            Console.WriteLine(firstName + middleInitial + lastName + " Account Number: " + AccountNumber);
           
         }
 

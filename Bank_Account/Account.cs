@@ -41,11 +41,16 @@ namespace Bank_Account
 
         //method
 
-        public abstract void Balance();
+        public virtual void Balance()
+        {
+            Console.WriteLine("Your Account Balance is: $"); 
+        }
 
         public abstract double Deposit();
 
         public abstract double Withdraw(); 
+
+        
        
     }
 }

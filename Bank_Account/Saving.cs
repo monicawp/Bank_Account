@@ -34,7 +34,7 @@ namespace Bank_Account
             
         }
 
-        // constructor 
+        // constructor MUST HAVE 1
         public Saving(double savAccountBalance, double depAmt, double withdrawAmt, double minBalance)
         {
             this.savAccountBalance = savAccountBalance;
@@ -44,12 +44,17 @@ namespace Bank_Account
         }
 
         //method
+        
 
+        // inheriting from the virtual method in Account class 
+        //method to show account balance
         public override void Balance()
         {
-            Console.WriteLine("Your Savings Account Balance is: " + savAccountBalance + " dollars" );
+            base.Balance(); Console.WriteLine("$" + savAccountBalance);
         }
 
+        //Does math for adding the user imput amount to the hard coded savings account balance
+        //savings account balance is 1000
         public override double Deposit()
         {
             savAccountBalance = DepositFunds + savAccountBalance;
@@ -58,6 +63,8 @@ namespace Bank_Account
             return savAccountBalance;
         }
 
+        //Does math for subtracting the user imput amount from the hard coded savings account balance
+        // savings acount balance 1000
         public override double Withdraw()
         {
             savAccountBalance = savAccountBalance - WithdrawAmt;
