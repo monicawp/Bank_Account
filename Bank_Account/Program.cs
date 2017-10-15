@@ -84,41 +84,64 @@ namespace Bank_Account
                         Console.WriteLine("Enter Withdraw Amount: ");
                         savings.WithdrawAmt = double.Parse(Console.ReadLine());
                         double newBalance = 0;
-                        if (newBalance <= 100)
-                        {
-                            Console.WriteLine("You Must Have a Minimum of 100 Dollars in Your Savings Account.");
-                            Console.WriteLine("Please Re-enter a Valid Amount to withdraw.");
-                            savings.WithdrawAmt = int.Parse(Console.ReadLine());
 
-                            newBalance = savings.Withdraw();
-                            Console.WriteLine("Your Cash is Dispensing");
-                            Console.WriteLine("Your New Balance is: $" + newBalance + " dollars");
+                        //if statement put in a loop to ensure that if you enter an invalid amount once, 
+                        // it will promt the user again if they enter another invalid amount
+                        do
+                        {
+                            if (newBalance <= 100)
+                            {
+                                Console.WriteLine("You Must Have a Minimum of 100 Dollars in Your Savings Account.");
+                                Console.WriteLine("Please Re-enter a Valid Amount to withdraw.");
+                                savings.WithdrawAmt = int.Parse(Console.ReadLine());
+                            }
+
+                            else if (newBalance > 100)
+                            {
+                                newBalance = savings.Withdraw();
+                                Console.WriteLine("Your Cash is Dispensing");
+                                Console.WriteLine("Your New Balance is: $" + newBalance + " dollars");
+                            }
+
                         }
-                        else if (newBalance > 100 )
+                        while (newBalance <= 100);
+                        if (newBalance >= 100)
                         {
                             newBalance = savings.Withdraw();
                             Console.WriteLine("Your Cash is Dispensing");
                             Console.WriteLine("Your New Balance is: $" + newBalance + " dollars");
+
                         }
                     }
+
+
+
                     else if (savOrCheck == 'B')
                     {
                         Console.WriteLine("Enter Withdraw Amount: ");
                         checking.WithdrawAmt = double.Parse(Console.ReadLine());
                         double newBalance = 0;
-                        
-                        if (newBalance < checking.WithdrawAmt)
+
+                        do
                         {
-                           Console.WriteLine("The Amount You Entered Exceeds the Funds Available in Your Account");
-                            Console.WriteLine("Please Enter a Valid Withdraw Amount");
-                            checking.WithdrawAmt = int.Parse(Console.ReadLine());
-                            newBalance = checking.Withdraw();
-                            Console.WriteLine("Your Cash is Dispensing");
-                            Console.WriteLine("Your New Balance is: $" + newBalance + " dollars");
+                            if (newBalance < checking.WithdrawAmt)
+                            {
+                                Console.WriteLine("The Amount You Entered Exceeds the Funds Available in Your Account");
+                                Console.WriteLine("Please Enter a Valid Withdraw Amount");
+                                checking.WithdrawAmt = int.Parse(Console.ReadLine());
+
+                            }
+                            else if (newBalance > checking.WithdrawAmt)
+                            {
+                                newBalance = checking.Withdraw();
+                                Console.WriteLine("Your Cash is Dispensing");
+                                Console.WriteLine("Your New Balance is: $" + newBalance + " dollars");
+                            }
                         }
-                        else if (newBalance > checking.WithdrawAmt) 
+                        while (newBalance < checking.WithdrawAmt);
+                        if ( newBalance > checking.WithdrawAmt)
                         {
-                            newBalance = checking.Withdraw(); 
+                            newBalance = checking.Withdraw();
                             Console.WriteLine("Your Cash is Dispensing");
                             Console.WriteLine("Your New Balance is: $" + newBalance + " dollars");
                         }
