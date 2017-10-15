@@ -14,12 +14,15 @@ namespace Bank_Account
             // loop variable 
             string anotherTransaction = "";
            
-                // Hard coded client info contructors
+                // Instantiating Client object, Checking object, and Savings object
                 Client client1 = new Bank_Account.Client("Monica", " W", " Perez", 1545);
                 Saving savings = new Saving(1000, 0, 0, 100);
                 Checking checking = new Bank_Account.Checking(500, 0, 0);
+            
 
-
+            //With every loop, the amount does not reset, if you withdraw $100 from checking,
+            // which the balance is $500 and then after the loop withdraw another 100, the balance will say
+            // 300, because it will take into account every transaction you made. same for savings
             do
             {
                 // Intro Menu 
@@ -61,14 +64,14 @@ namespace Bank_Account
                         Console.WriteLine("Enter deposit amount:");
                         savings.DepositFunds = double.Parse(Console.ReadLine());
                         double newBalance = savings.Deposit();
-                        Console.WriteLine("Your New Balance is: " + newBalance + " dollars");
+                        Console.WriteLine("Your New Balance is: $" + newBalance + " dollars");
                     }
                     else if (savOrCheck == 'B')
                     {
                         Console.WriteLine("Enter deposit amount:");
                         checking.DepositFunds = double.Parse(Console.ReadLine());
                         double newBalance = checking.Deposit();
-                        Console.WriteLine("Your New Balance is: " + newBalance + " dollars");
+                        Console.WriteLine("Your New Balance is: $" + newBalance + " dollars");
                     }
                 }
                 else if (menuOptions == 4)
@@ -91,8 +94,9 @@ namespace Bank_Account
                             Console.WriteLine("Your Cash is Dispensing");
                             Console.WriteLine("Your New Balance is: $" + newBalance + " dollars");
                         }
-                        else
+                        else if (newBalance > 100 )
                         {
+                            newBalance = savings.Withdraw();
                             Console.WriteLine("Your Cash is Dispensing");
                             Console.WriteLine("Your New Balance is: $" + newBalance + " dollars");
                         }
@@ -101,10 +105,23 @@ namespace Bank_Account
                     {
                         Console.WriteLine("Enter Withdraw Amount: ");
                         checking.WithdrawAmt = double.Parse(Console.ReadLine());
-                        double newBalance = checking.Withdraw();
-                        Console.WriteLine("Your Cash is Dispensing");
-                        Console.WriteLine("Your New Balance is: " + newBalance + " dollars");
-
+                        double newBalance = 0;
+                        
+                        if (newBalance < checking.WithdrawAmt)
+                        {
+                           Console.WriteLine("The Amount You Entered Exceeds the Funds Available in Your Account");
+                            Console.WriteLine("Please Enter a Valid Withdraw Amount");
+                            checking.WithdrawAmt = int.Parse(Console.ReadLine());
+                            newBalance = checking.Withdraw();
+                            Console.WriteLine("Your Cash is Dispensing");
+                            Console.WriteLine("Your New Balance is: $" + newBalance + " dollars");
+                        }
+                        else if (newBalance > checking.WithdrawAmt) 
+                        {
+                            newBalance = checking.Withdraw(); 
+                            Console.WriteLine("Your Cash is Dispensing");
+                            Console.WriteLine("Your New Balance is: $" + newBalance + " dollars");
+                        }
                     }
 
                 }

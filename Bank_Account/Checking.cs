@@ -25,7 +25,7 @@ namespace Bank_Account
         {
 
         }
-        // constructor
+        // constructor MUST HAVE 1
         
         public Checking(int checkAccountBalance, double depAmt, double withdrawAmt)
         {

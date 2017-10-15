@@ -12,9 +12,9 @@ namespace Bank_Account
 
         private int accountNumber = 1545;
         private double depositFunds;
-        private int actbalance;
+        private int actBalance;
         private double withdrawAmt;
-
+        private string accountType; 
 
 
 
@@ -41,9 +41,10 @@ namespace Bank_Account
 
         //method
 
+            //virtual method being inherited by checking and savings
         public virtual void Balance()
         {
-            Console.WriteLine("Your Account Balance is: $"); 
+            Console.WriteLine("Your Account Balance is: "); 
         }
 
         public abstract double Deposit();
